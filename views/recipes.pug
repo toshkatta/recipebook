@@ -1,0 +1,8 @@
+.list-group
+    a(href="#", *ngFor="let recipe of recipes").list-group-item.list-group-item-action.flex-column.align-items-start
+        small Name
+        p.mb-1 {{recipe.name}}
+        small Ingredients
+        p.mb-1 {{recipe.ingredients}}
+        small Directions
+        p.mb-1 {{recipe.directions}}

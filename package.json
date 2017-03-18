@@ -12,6 +12,10 @@
   "dependencies": {
     "body-parser": "*",
     "express": "*",
-    "pg": "*"
-  }
+    "gulp": "^3.9.1",
+    "gulp-pug": "^3.3.0",
+    "pg": "*",
+    "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {}
 }
