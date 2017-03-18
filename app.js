@@ -62,7 +62,7 @@ app.post('/add', function (req, res) {
             connectionErrorHandler(err);
         }
 
-        client.query('INSERT INTO recipes(name, ingredients, directions) VALUES($1, $2, $3)', [req.body.name, req.body.ingredients, req.body.directions], function (err, result) {
+        client.query('INSERT INTO recipes(name, ingredients, directions, userId) VALUES($1, $2, $3, $4)', [req.body.name, req.body.ingredients, req.body.directions, req.body.userId], function (err, result) {
             if (err) {
                 queryErrorHandler(err);
             }
