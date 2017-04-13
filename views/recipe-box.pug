@@ -1,0 +1,16 @@
+h4 {{recipe.name}}
+    button.btn.btn-default.pull-right(type="button" data-toggle="collapse" attr.data-target="#{{recipe.id}}" aria-expanded="false" attr.aria-controls="{{recipe.id}}")
+        span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
+.collapse(id="{{recipe.id}}")
+    p
+        strong.
+            Ingredients: 
+        | {{recipe.ingredients}}
+    p
+        strong.
+            Directions: 
+        | {{recipe.directions}}
+    button.btn.btn-default.edit-recipe
+        span.glyphicon.glyphicon-edit(aria-hidden="true")
+    button.btn.btn-danger.delete-recipe
+        span.glyphicon.glyphicon-remove(aria-hidden="true")

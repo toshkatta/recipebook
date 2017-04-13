@@ -1,0 +1,22 @@
+body {
+  background: #f9f9f9; }
+
+.push-v {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.push-v-more {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.push-top {
+  margin-top: 10px; }
+
+.push-top-more {
+  margin-top: 20px; }
+
+.push-bottom {
+  margin-bottom: 10px; }
+
+.push-bottom-more {
+  margin-bottom: 20px; }

@@ -1,0 +1,27 @@
+#addRecipeModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addRecipeModalLabel')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        h4#addRecipeModalLabel.modal-title Create a recipe
+      .modal-body
+        form((ngSubmit)="onSubmit()", #recipeForm="ngForm")
+          .form-group
+              label(for="name") Enter a name
+              input(type="text", name="name", [(ngModel)]="model.name", #name="ngModel", required)#name.form-control
+              .alert.alert-danger([hidden]="name.valid || name.pristine").
+                  Name is required
+          .form-group
+              label(for="ingredients") Enter ingredients
+              textarea([(ngModel)]="model.ingredients", rows="3", name="ingredients", #ingredients="ngModel", required)#ingredients.form-control
+              .alert.alert-danger([hidden]="ingredients.valid || ingredients.pristine").
+                  Ingredients are required
+          .form-group
+              label(for="directions") Enter directions
+              textarea([(ngModel)]="model.directions", rows="3", name="directions", #directions="ngModel", required)#directions.form-control
+              .alert.alert-danger([hidden]="directions.valid || directions.pristine").
+                  Directions are required
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="addRecipe()", [disabled]="!recipeForm.form.valid") Save

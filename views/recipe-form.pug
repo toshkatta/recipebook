@@ -1,20 +1,4 @@
-.container
-    form((ngSubmit)="onSubmit()", #recipeForm="ngForm")
-        .form-group
-            label(for="name") Enter a name
-            input(type="text", name="name", [(ngModel)]="model.name", #name="ngModel", required)#name.form-control
-            .alert.alert-danger([hidden]="name.valid || name.pristine").
-                Name is required
-        .form-group
-            label(for="ingredients") Enter ingredients
-            textarea([(ngModel)]="model.ingredients", rows="3", name="ingredients", #ingredients="ngModel", required)#ingredients.form-control
-            .alert.alert-danger([hidden]="ingredients.valid || ingredients.pristine").
-                Ingredients are required
-        .form-group
-            label(for="directions") Enter directions
-            textarea([(ngModel)]="model.directions", rows="3", name="directions", #directions="ngModel", required)#directions.form-control
-            .alert.alert-danger([hidden]="directions.valid || directions.pristine").
-                Directions are required
-        button(type="submit", (click)="addRecipe(); recipeForm.reset()", [disabled]="!recipeForm.form.valid").btn.btn-primary Save
-    
-    include ./recipes.pug
+button.btn.btn-primary.btn-block.push-v-more(type="button" data-toggle="modal" data-target="#addRecipeModal").
+    Add recipe
+
+include ./addRecipeModal.pug

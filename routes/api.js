@@ -19,7 +19,7 @@ router.post('/addRecipe', function (req, res) {
             res.status(500).send({ error: err });
         }
 
-        client.query('INSERT INTO recipes(name, ingredients, directions, "userId") VALUES($1, $2, $3, $4)', [req.body.name, req.body.ingredients, req.body.directions, req.body.userId], function (err, result) {
+        client.query('INSERT INTO recipes(name, ingredients, directions) VALUES($1, $2, $3)', [req.body.name, req.body.ingredients, req.body.directions], function (err, result) {
             if (err) {
                 res.status(500).send({ error: err });
             }
@@ -45,7 +45,7 @@ router.get('/recipes', function (req, res) {
                 res.status(500).send({ error: err });
             }
 
-            res.status(200).send({ data: result.rows });
+            res.status(200).send(result.rows);
             done();
         });
     });
