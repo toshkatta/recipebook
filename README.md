@@ -13,16 +13,15 @@ npm i
 npm start
 ```
 
-2. Start the Angular server
+2. Build pug to html and scss to css
+```
+gulp
+```
+
+3. Start the Angular server
 ```
 cd client
 npm start
-```
-
-3. Build pug to html and scss to css
-```
-cd client
-gulp
 ```
 
 
