@@ -15,13 +15,30 @@ export class RecipeService {
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
-    
+
     addRecipe(body: Object) {
         let bodyString = JSON.stringify(body);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers })
         return this.http.post('api/addRecipe', body, options)
             .map(response => response.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+
+    updateRecipe(body: Object): Observable<Recipe[]> {
+        let bodyString = JSON.stringify(body);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.put('api/edit', body, options)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+    // Delete a recipe
+    removeRecipe(id: number): Observable<Recipe[]> {
+        return this.http.delete(`api/delete/${id}`)
+            .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 }

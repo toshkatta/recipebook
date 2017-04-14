@@ -4,7 +4,8 @@
       .modal-header
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') &times;
-        h4#addRecipeModalLabel.modal-title Create a recipe
+        h3#addRecipeModalLabel.modal-title.text-center(*ngIf="!editing") Create a recipe
+        h3#addRecipeModalLabel.modal-title.text-center(*ngIf="editing") Edit this recipe
       .modal-body
         form((ngSubmit)="onSubmit()", #recipeForm="ngForm")
           .form-group
@@ -23,5 +24,6 @@
               .alert.alert-danger([hidden]="directions.valid || directions.pristine").
                   Directions are required
           .modal-footer
-            button.btn.btn-default(type='button', data-dismiss='modal') Close
-            button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="addRecipe()", [disabled]="!recipeForm.form.valid") Save
+            button.btn.btn-default(type='button', data-dismiss='modal', (click)="removeEditing()") Close
+            button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="addRecipe()", [disabled]="!recipeForm.form.valid", *ngIf="!editing") Save            
+            button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="editRecipe()", [disabled]="!recipeForm.form.valid", *ngIf="editing") Edit

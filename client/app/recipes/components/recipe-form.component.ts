@@ -14,7 +14,7 @@ import { Recipe } from '../models/recipe';
   providers: [RecipeService]
 })
 
-export class RecipeFormComponent implements OnChanges{
+export class RecipeFormComponent implements OnChanges {
   @ViewChild('recipeForm') form;
 
   constructor(private recipeService: RecipeService) {
@@ -30,26 +30,47 @@ export class RecipeFormComponent implements OnChanges{
 
   onSubmit() { this.submitted = true; }
 
+  resetForm = function () {
+    this.model = new Recipe('', '', '');
+    this.form.reset();
+    this.removeEditing();
+  }
+
+  removeEditing = function () {
+    this.editing = false;
+  }
+
   addRecipe = function () {
     this.model = new Recipe(this.model.name, this.model.ingredients, this.model.directions);
 
     this.recipeService.addRecipe(this.model)
       .subscribe(
-        data => {
-          EmitterService.get(this.listId).emit(data);
-          this.model = new Recipe('', '', '');
-          this.form.reset();
-        },
-        err => console.error("error: ", err)
+      data => {
+        EmitterService.get(this.listId).emit(data);
+        this.resetForm();
+      },
+      err => console.error("error: ", err)
+      );
+  }
+
+  editRecipe = function () {
+    this.recipeService.updateRecipe(this.model)
+      .subscribe(
+      data => {
+        EmitterService.get(this.listId).emit(data);
+        this.resetForm();
+      },
+      err => console.error("error: ", err)
       );
   }
 
   ngOnChanges() {
     // Listen to the 'edit'emitted event so as populate the model
     // with the event payload
-    // EmitterService.get(this.editId).subscribe((recipe: Recipe) => {
-    //   this.model = recipe;
-    //   this.editing = true;
-    // });
+    EmitterService.get(this.editId).subscribe((recipe: Recipe) => {
+      // Copy Object by values
+      this.model = Object.assign({}, recipe);
+      this.editing = true;
+    });
   }
 }

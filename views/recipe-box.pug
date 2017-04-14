@@ -1,16 +1,22 @@
-h4 {{recipe.name}}
-    button.btn.btn-default.pull-right(type="button" data-toggle="collapse" attr.data-target="#{{recipe.id}}" aria-expanded="false" attr.aria-controls="{{recipe.id}}")
-        span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
-.collapse(id="{{recipe.id}}")
-    p
-        strong.
-            Ingredients: 
-        | {{recipe.ingredients}}
-    p
-        strong.
-            Directions: 
-        | {{recipe.directions}}
-    button.btn.btn-default.edit-recipe
-        span.glyphicon.glyphicon-edit(aria-hidden="true")
-    button.btn.btn-danger.delete-recipe
-        span.glyphicon.glyphicon-remove(aria-hidden="true")
+div(*ngIf="!confirmDelete")
+    h4 {{recipe.name}}
+        button.btn.btn-default.pull-right(type="button", data-toggle="collapse", attr.data-target="#{{recipe.id}}", aria-expanded="false", attr.aria-controls="{{recipe.id}}")
+            span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
+    .collapse(id="{{recipe.id}}")
+        p
+            strong.
+                Ingredients: 
+            | {{recipe.ingredients}}
+        p
+            strong.
+                Directions: 
+            | {{recipe.directions}}
+        button.btn.btn-lg.btn-default(data-toggle="modal", data-target="#addRecipeModal", (click)="editRecipe()")
+            span.glyphicon.glyphicon-edit(aria-hidden="true")
+        button.btn.btn-lg.btn-danger((click)="confirmDelete = !confirmDelete")
+            span.glyphicon.glyphicon-remove(aria-hidden="true")
+
+div(*ngIf="confirmDelete")
+    h4 Delete {{recipe.name}}?
+    button.btn.btn-lg.btn-default(type="button", (click)="confirmDelete = !confirmDelete") Close
+    button.btn.btn-lg.btn-danger(type="button", (click)="deleteRecipe()") Delete

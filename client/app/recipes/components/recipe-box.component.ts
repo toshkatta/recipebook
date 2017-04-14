@@ -11,6 +11,7 @@ import { EmitterService } from '../../emitter.service';
 })
 
 export class RecipeBoxComponent {
+  private confirmDelete: boolean = false;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -18,21 +19,20 @@ export class RecipeBoxComponent {
   @Input() listId: string;
   @Input() editId: string;
 
-  // editRecipe() {
-  //   // Emit edit event
-  //   EmitterService.get(this.editId).emit(this.recipe);
-  // }
+  editRecipe() {
+    // Emit edit event
+    EmitterService.get(this.editId).emit(this.recipe);
+  }
 
-  // deleteRecipe(id: string) {
-  //   // Call removeComment() from CommentService to delete comment
-  //   this.recipeService.removeRecipe(id).subscribe(
-  //     recipes => {
-  //       // Emit list event
-  //       EmitterService.get(this.listId).emit(recipes);
-  //     },
-  //     err => {
-  //       // Log errors if any
-  //       console.log(err);
-  //     });
-  // }
+  deleteRecipe() {
+    this.recipeService.removeRecipe(this.recipe.id).subscribe(
+      recipes => {
+        // Emit list event
+        EmitterService.get(this.listId).emit(recipes);
+      },
+      err => {
+        // Log errors if any
+        console.log(err);
+      });
+  }
 }

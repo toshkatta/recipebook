@@ -13,26 +13,7 @@ let express = require('express'),
     pool = new pg.Pool(config);
 
 
-router.post('/addRecipe', function (req, res) {
-    pool.connect(function (err, client, done) {
-        if (err) {
-            res.status(500).send({ error: err });
-        }
 
-        client.query('INSERT INTO recipes(name, ingredients, directions) VALUES($1, $2, $3)', [req.body.name, req.body.ingredients, req.body.directions], function (err, result) {
-            if (err) {
-                res.status(500).send({ error: err });
-            }
-
-            res.status(200).send({ data: result.rows });
-            done();
-        });
-    });
-
-    pool.on('error', function (err, client) {
-        res.status(500).send({ error: err });
-    });
-});
 
 router.get('/recipes', function (req, res) {
     pool.connect(function (err, client, done) {
@@ -55,16 +36,15 @@ router.get('/recipes', function (req, res) {
     });
 });
 
-/*
-app.get('/', function (req, res) {
+router.post('/addRecipe', function (req, res) {
     pool.connect(function (err, client, done) {
         if (err) {
-            connectionErrorHandler(err);
+            res.status(500).send({ error: err });
         }
 
-        client.query('SELECT * FROM recipes', function (err, result) {
+        client.query('INSERT INTO recipes(name, ingredients, directions) VALUES($1, $2, $3)', [req.body.name, req.body.ingredients, req.body.directions], function (err, result) {
             if (err) {
-                queryErrorHandler(err);
+                res.status(500).send({ error: err });
             }
 
             res.status(200).send({ data: result.rows });
@@ -72,37 +52,20 @@ app.get('/', function (req, res) {
         });
     });
 
-    pool.on('error', clientErrorHandler(err, client));
-});
-
-app.post('/add', function (req, res) {
-    pool.connect(function (err, client, done) {
-        if (err) {
-            connectionErrorHandler(err);
-        }
-
-        client.query('INSERT INTO recipes(name, ingredients, directions, userId) VALUES($1, $2, $3, $4)', [req.body.name, req.body.ingredients, req.body.directions, req.body.userId], function (err, result) {
-            if (err) {
-                queryErrorHandler(err);
-            }
-
-            res.status(200).send({ data: result.rows });
-            done();
-        });
+    pool.on('error', function (err, client) {
+        res.status(500).send({ error: err });
     });
-
-    pool.on('error', clientErrorHandler(err, client));
 });
 
-app.delete('/delete/:id', function (req, res) {
+router.delete('/delete/:id', function (req, res) {
     pool.connect(function (err, client, done) {
         if (err) {
-            connectionErrorHandler(err);
+            res.status(500).send({ error: err });
         }
 
         client.query('DELETE FROM recipes WHERE id = $1', [req.params.id], function (err, result) {
             if (err) {
-                queryErrorHandler(err);
+                res.status(500).send({ error: err });
             }
 
             res.status(200).send({ data: result.rows });
@@ -110,18 +73,20 @@ app.delete('/delete/:id', function (req, res) {
         });
     });
 
-    pool.on('error', clientErrorHandler(err, client));
+    pool.on('error', function (err, client) {
+        res.status(500).send({ error: err });
+    });
 });
 
-app.put('/edit', function (req, res) {
+router.put('/edit', function (req, res) {
     pool.connect(function (err, client, done) {
         if (err) {
-            connectionErrorHandler(err);
+            res.status(500).send({ error: err });
         }
 
         client.query('UPDATE recipes SET name=$1, ingredients=$2, directions=$3 WHERE id = $4', [req.body.name, req.body.ingredients, req.body.directions, req.body.id], function (err, result) {
             if (err) {
-                queryErrorHandler(err);
+                res.status(500).send({ error: err });
             }
 
             res.status(200).send({ data: result.rows });
@@ -129,8 +94,9 @@ app.put('/edit', function (req, res) {
         });
     });
 
-    pool.on('error', clientErrorHandler(err, client));
+    pool.on('error', function (err, client) {
+        res.status(500).send({ error: err });
+    });
 });
-*/
 
 module.exports = router;
