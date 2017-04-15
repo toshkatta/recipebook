@@ -10,8 +10,8 @@ import 'rxjs/add/operator/catch';
 export class RecipeService {
     constructor(private http: Http) { };
 
-    getRecipes(): Observable<Recipe[]> {
-        return this.http.get('api/recipes')
+    getRecipes(page): Observable<Recipe[]> {
+        return this.http.get(`api/recipes?page=${page}`)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
