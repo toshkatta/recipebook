@@ -16,6 +16,12 @@ export class RecipeService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
+    getRecipe(id): Observable<Recipe[]> {
+        return this.http.get(`api/recipe?id=${id}`)
+            .map((res: Response) => res.json().data)
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
     addRecipe(body: Object) {
         let bodyString = JSON.stringify(body);
         let headers = new Headers({ 'Content-Type': 'application/json' });

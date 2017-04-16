@@ -15,6 +15,7 @@ div(*ngIf="!confirmDelete")
             span.glyphicon.glyphicon-edit(aria-hidden="true")
         button.btn.btn-lg.btn-danger((click)="confirmDelete = !confirmDelete")
             span.glyphicon.glyphicon-remove(aria-hidden="true")
+        button.btn.btn-lg.btn-info.pull-right((click)="onSelect()") View
 
 div(*ngIf="confirmDelete")
     h4 Delete {{recipe.name}}?

@@ -12,7 +12,7 @@ import { EmitterService } from '../../emitter.service';
 })
 
 export class RecipeListComponent implements OnInit, OnChanges {
-    constructor(private recipeService: RecipeService) { }
+    constructor( private recipeService: RecipeService ) { }
 
     recipes: Recipe[];
     page: number = 0;
@@ -40,7 +40,6 @@ export class RecipeListComponent implements OnInit, OnChanges {
                 } else {
                     return;
                 }
-
 
                 break;
             default:

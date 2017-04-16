@@ -13,8 +13,6 @@ let express = require('express'),
     pool = new pg.Pool(config);
 
 
-
-
 router.get('/recipes', function (req, res) {
     pool.connect(function (err, client, done) {
         if (err) {
@@ -30,13 +28,36 @@ router.get('/recipes', function (req, res) {
             if (err) {
                 res.status(500).send({ error: err });
             }
-            
-            if(result.rowCount > (limit - 1)) {
+
+            if (result.rowCount > (limit - 1)) {
                 more = true;
                 result.rows.pop();
             }
 
-            res.status(200).send({recipes: result.rows, more: more});
+            res.status(200).send({ recipes: result.rows, more: more });
+            done();
+        });
+    });
+
+    pool.on('error', function (err, client) {
+        res.status(500).send({ error: err });
+    });
+});
+
+router.get('/recipe', function (req, res) {
+    pool.connect(function (err, client, done) {
+        if (err) {
+            res.status(500).send({ error: err });
+        }
+
+        let id = parseInt(req.query.id)
+
+        client.query('SELECT id, name, ingredients, directions FROM recipes WHERE id = $1', [id], function (err, result) {
+            if (err) {
+                res.status(500).send({ error: err });
+            }
+
+            res.status(200).send({ data: result.rows });
             done();
         });
     });

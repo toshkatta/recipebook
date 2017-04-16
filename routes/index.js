@@ -1,7 +1,15 @@
 let express = require('express');
 let router = express.Router();
 
-router.get('/', function (req, res) {
+const routes = [
+    '/',
+    '/recipes',
+    '/drinks',
+    '/recipe/:id',
+    '/drink/:id'
+]
+
+router.get(routes, function (req, res) {
     res.render('index');
 });
 

@@ -1,0 +1,13 @@
+h4 {{recipe.name}}
+p
+    strong.
+        Ingredients: 
+    | {{recipe.ingredients}}
+p
+    strong.
+        Directions: 
+    | {{recipe.directions}}
+button.btn.btn-lg.btn-default((click)="edit()")
+    span.glyphicon.glyphicon-edit(aria-hidden="true")
+button.btn.btn-lg.btn-danger((click)="delete()")
+    span.glyphicon.glyphicon-remove(aria-hidden="true")

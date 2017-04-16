@@ -1,3 +1,13 @@
-h1.text-center.push-bottom.
-   Recipe book
-recipe-widget
+nav.navbar.navbar-default
+  .container-fluid
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+            a(routerLink="/drinks", routerLinkActive="active") Drinks
+        li
+            a(routerLink="/recipes", routerLinkActive="active") Recipes
+
+.container
+  h1.text-center.push-bottom.
+    Recipe book
+  router-outlet

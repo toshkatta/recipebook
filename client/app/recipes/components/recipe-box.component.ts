@@ -4,6 +4,8 @@ import { Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { EmitterService } from '../../emitter.service';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'recipe-box',
   templateUrl: '../views/recipe-box.html',
@@ -13,11 +15,18 @@ import { EmitterService } from '../../emitter.service';
 export class RecipeBoxComponent {
   private confirmDelete: boolean = false;
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router
+  ) { }
 
   @Input() recipe: Recipe;
   @Input() listId: string;
   @Input() editId: string;
+
+  onSelect() {
+    this.router.navigate(['/recipe', this.recipe.id]);
+  }
 
   editRecipe() {
     // Emit edit event
