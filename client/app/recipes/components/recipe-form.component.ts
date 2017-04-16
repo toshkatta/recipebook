@@ -36,11 +36,42 @@ export class RecipeFormComponent implements OnChanges {
     this.removeEditing();
   }
 
+  checkIfEmpty(body: Recipe, edit = false): Recipe {
+    body.name = body.name ? body.name.trim() : null;
+    body.ingredients = body.ingredients ? body.ingredients.trim() : null;
+    body.directions = body.directions ? body.directions.trim() : null;
+
+    if (!body.name || !body.directions || !body.ingredients) return null
+
+    if (edit) {
+      if (!body.id) {
+        return null
+      } else {
+        return {
+          id: body.id,
+          name: body.name,
+          ingredients: body.ingredients,
+          directions: body.directions
+        };
+
+      }
+    } else {
+      return {
+        name: body.name,
+        ingredients: body.ingredients,
+        directions: body.directions
+      };
+    }
+
+  }
+
   removeEditing = function () {
     this.editing = false;
   }
 
   addRecipe = function () {
+    if (!this.checkIfEmpty(this.model)) return
+
     this.model = new Recipe(this.model.name, this.model.ingredients, this.model.directions);
 
     this.recipeService.addRecipe(this.model)
@@ -54,6 +85,8 @@ export class RecipeFormComponent implements OnChanges {
   }
 
   editRecipe = function () {
+    if (!this.checkIfEmpty(this.model, true)) return
+
     this.recipeService.updateRecipe(this.model)
       .subscribe(
       data => {

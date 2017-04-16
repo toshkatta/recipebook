@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class RecipeService {
     constructor(private http: Http) { };
-
+    
     getRecipes(page): Observable<Recipe[]> {
         return this.http.get(`api/recipes?page=${page}`)
             .map((res: Response) => res.json())
@@ -22,7 +22,9 @@ export class RecipeService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
-    addRecipe(body: Object) {
+    addRecipe(body: Recipe) {
+        if (!body) return
+
         let bodyString = JSON.stringify(body);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers })
@@ -32,7 +34,9 @@ export class RecipeService {
     }
 
 
-    updateRecipe(body: Object): Observable<Recipe[]> {
+    updateRecipe(body: Recipe): Observable<Recipe[]> {
+        if (!body) return
+
         let bodyString = JSON.stringify(body);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });

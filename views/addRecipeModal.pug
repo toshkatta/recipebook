@@ -9,18 +9,18 @@
       .modal-body
         form((ngSubmit)="onSubmit()", #recipeForm="ngForm")
           .form-group
-              label(for="name") Enter a name
-              input(type="text", name="name", [(ngModel)]="model.name", #name="ngModel", required)#name.form-control
+              label(for="name") Name
+              input(type="text", name="name", [(ngModel)]="model.name", #name="ngModel", placeholder="Name", required)#name.form-control
               .alert.alert-danger([hidden]="name.valid || name.pristine").
                   Name is required
           .form-group
-              label(for="ingredients") Enter ingredients
-              textarea([(ngModel)]="model.ingredients", rows="3", name="ingredients", #ingredients="ngModel", required)#ingredients.form-control
+              label(for="ingredients") Ingredients
+              textarea([(ngModel)]="model.ingredients", rows="5", name="ingredients", #ingredients="ngModel", placeholder="Ingredients", required)#ingredients.form-control
               .alert.alert-danger([hidden]="ingredients.valid || ingredients.pristine").
                   Ingredients are required
           .form-group
-              label(for="directions") Enter directions
-              textarea([(ngModel)]="model.directions", rows="3", name="directions", #directions="ngModel", required)#directions.form-control
+              label(for="directions") Directions
+              textarea([(ngModel)]="model.directions", rows="5", name="directions", #directions="ngModel", placeholder="Driections", required)#directions.form-control
               .alert.alert-danger([hidden]="directions.valid || directions.pristine").
                   Directions are required
           .modal-footer
