@@ -5,6 +5,9 @@ import { DrinkBoxComponent } from './components/drink-box.component';
 import { DrinkListComponent } from './components/drink-list.component';
 
 
+import { DrinkService } from './services/drink.service'
+
+
 @NgModule({
   imports: [
     BrowserModule
@@ -12,6 +15,9 @@ import { DrinkListComponent } from './components/drink-list.component';
   declarations: [
     DrinkBoxComponent,
     DrinkListComponent
+  ],
+  providers: [
+    DrinkService
   ],
   exports: [
     DrinkBoxComponent,

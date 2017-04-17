@@ -1,9 +1,9 @@
 recipe-box.row([editId]="editId", [listId]="listId", *ngFor="let recipe of recipes", [recipe]="recipe")
 nav(aria-label="Recipes list navigation")
     ul.pager
-        li.previous.pull-left
-            button([ngClass]="{'disabled': page === 0}", (click)="getRecipes(-1)").btn.btn-default.
+        li.pointer.previous([ngClass]="{'disabled': page === 0}", (click)="getRecipes(-1)")
+            a.
                 Previous
-        li.next.pull-right
-            button([ngClass]="{'disabled': !more}", (click)="getRecipes(1)").btn.btn-default.
+        li.pointer.next([ngClass]="{'disabled': !more}", (click)="getRecipes(1)")
+            a.
                 Next

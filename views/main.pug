@@ -1,13 +1,13 @@
-nav.navbar.navbar-default
+nav.navbar.navbar
   .container-fluid
     .collapse.navbar-collapse
-      ul.nav.navbar-nav
+      .pull-left
+        h3 Recipe Book
+      ul.nav.navbar-nav.pull-right
         li
             a(routerLink="/drinks", routerLinkActive="active") Drinks
         li
             a(routerLink="/recipes", routerLinkActive="active") Recipes
 
 .container
-  h1.text-center.push-bottom.
-    Recipe book
   router-outlet

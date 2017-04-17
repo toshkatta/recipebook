@@ -130,4 +130,38 @@ router.put('/edit', function (req, res) {
     });
 });
 
+
+router.get('/drinks', function (req, res) {
+    pool.connect(function (err, client, done) {
+        if (err) {
+            res.status(500).send({ error: err });
+        }
+
+        // let limit = 4;
+        // let offset = parseInt(req.query.page) * limit;
+        // offset = offset > 0 ? offset - parseInt(req.query.page) : offset;
+        // let more = false;
+
+        // client.query('SELECT id, name, ingredients, directions FROM drinks ORDER BY id DESC LIMIT $1 OFFSET $2', [limit, offset], function (err, result) {
+        client.query('SELECT id, name, ingredients, directions FROM drinks', function (err, result) {
+            if (err) {
+                res.status(500).send({ error: err });
+            }
+
+            // if (result.rowCount > (limit - 1)) {
+            //     more = true;
+            //     result.rows.pop();
+            // }
+
+            // res.status(200).send({ recipes: result.rows, more: more });
+            res.status(200).send({ drinks: result.rows });
+            done();
+        });
+    });
+
+    pool.on('error', function (err, client) {
+        res.status(500).send({ error: err });
+    });
+});
+
 module.exports = router;

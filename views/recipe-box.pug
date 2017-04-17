@@ -11,13 +11,13 @@ div(*ngIf="!confirmDelete")
             strong.
                 Directions: 
             | {{recipe.directions}}
-        button.btn.btn-lg.btn-default(data-toggle="modal", data-target="#addRecipeModal", (click)="editRecipe()")
+        button.btn.btn-primary(data-toggle="modal", data-target="#addRecipeModal", (click)="editRecipe()")
             span.glyphicon.glyphicon-edit(aria-hidden="true")
-        button.btn.btn-lg.btn-danger((click)="confirmDelete = !confirmDelete")
+        button.btn.btn-danger((click)="confirmDelete = !confirmDelete")
             span.glyphicon.glyphicon-remove(aria-hidden="true")
-        button.btn.btn-lg.btn-info.pull-right((click)="onSelect()") View
+        button.btn.btn-default.pull-right((click)="onSelect()") View
 
 div(*ngIf="confirmDelete")
     h4 Delete {{recipe.name}}?
-    button.btn.btn-lg.btn-default(type="button", (click)="confirmDelete = !confirmDelete") Close
-    button.btn.btn-lg.btn-danger(type="button", (click)="deleteRecipe()") Delete
+    button.btn.btn-danger(type="button", (click)="deleteRecipe()") Delete
+    button.btn.btn-default(type="button", (click)="confirmDelete = !confirmDelete") Close
