@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Drink } from '../models/drink';
 
 @Pipe({
-    name: 'nameFilter'
+    name: 'nameFilter',
+    pure: false
 })
 export class NameFilterPipe implements PipeTransform {
     transform(items: Drink[], searchValue: string): any {
