@@ -21,6 +21,7 @@ gulp
 3. Start the Angular server
 ```
 cd client
+npm i
 npm start
 ```
 
