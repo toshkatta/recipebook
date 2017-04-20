@@ -7,41 +7,34 @@ import { EmitterService } from '../../emitter.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'recipe-box',
-  templateUrl: '../views/recipe-box.html',
-  providers: [RecipeService, EmitterService]
+    selector: 'recipe-box',
+    templateUrl: '../views/recipe-box.html',
+    providers: [RecipeService, EmitterService]
 })
 
 export class RecipeBoxComponent {
-  private confirmDelete: boolean = false;
+    @Input() recipe: Recipe;
+    @Input() listId: string;
+    @Input() editId: string
 
-  constructor(
-    private recipeService: RecipeService,
-    private router: Router
-  ) { }
+    private recipeToDelete: Recipe;
 
-  @Input() recipe: Recipe;
-  @Input() listId: string;
-  @Input() editId: string;
+    readonly DELETEID: string = "delete";
 
-  onSelect() {
-    this.router.navigate(['/recipe', this.recipe.id]);
-  }
+    constructor(
+        private recipeService: RecipeService,
+        private router: Router
+    ) { }
 
-  editRecipe() {
-    // Emit edit event
-    EmitterService.get(this.editId).emit(this.recipe);
-  }
+    onSelect() {
+        this.router.navigate(['/recipe', this.recipe.id]);
+    }
 
-  deleteRecipe() {
-    this.recipeService.removeRecipe(this.recipe.id).subscribe(
-      recipes => {
-        // Emit list event
-        EmitterService.get(this.listId).emit(recipes);
-      },
-      err => {
-        // Log errors if any
-        console.log(err);
-      });
-  }
+    editRecipe() {
+        EmitterService.get(this.editId).emit(this.recipe);
+    }
+
+    deleteRecipe() {
+        EmitterService.get(this.DELETEID).emit(this.recipe);
+    }
 }

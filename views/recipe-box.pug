@@ -1,23 +1,19 @@
-div(*ngIf="!confirmDelete")
-    h4 {{recipe.name}}
-        button.btn.btn-default.pull-right(type="button", data-toggle="collapse", attr.data-target="#{{recipe.id}}", aria-expanded="false", attr.aria-controls="{{recipe.id}}")
-            span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
-    .collapse(id="{{recipe.id}}")
-        p
-            strong.
-                Ingredients: 
-            | {{recipe.ingredients}}
-        p
-            strong.
-                Directions: 
-            | {{recipe.directions}}
-        button.btn.btn-primary(data-toggle="modal", data-target="#addRecipeModal", (click)="editRecipe()")
-            span.glyphicon.glyphicon-edit(aria-hidden="true")
-        button.btn.btn-danger((click)="confirmDelete = !confirmDelete")
-            span.glyphicon.glyphicon-remove(aria-hidden="true")
-        button.btn.btn-default.pull-right((click)="onSelect()") View
+h4 {{recipe.name}}
+    button.btn.btn-default.pull-right(type="button", data-toggle="collapse", attr.data-target="#{{recipe.id}}", aria-expanded="false", attr.aria-controls="{{recipe.id}}")
+        span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
+.collapse(id="{{recipe.id}}")
+    p
+        strong.
+            Ingredients: 
+        | {{recipe.ingredients}}
+    p
+        strong.
+            Directions: 
+        | {{recipe.directions}}
+    button.btn.btn-primary(data-toggle="modal", data-target="#addRecipeModal", (click)="editRecipe()")
+        span.glyphicon.glyphicon-edit(aria-hidden="true")
+    button.btn.btn-danger(data-toggle="modal", data-target="#confirmDeleteModal", (click)="deleteRecipe()")
+        span.glyphicon.glyphicon-remove(aria-hidden="true")
+    button.btn.btn-info.pull-right((click)="onSelect()") View
 
-div(*ngIf="confirmDelete")
-    h4 Delete {{recipe.name}}?
-    button.btn.btn-danger(type="button", (click)="deleteRecipe()") Delete
-    button.btn.btn-default(type="button", (click)="confirmDelete = !confirmDelete") Close
+confirm-delete([deleteId]="DELETEID", [listId]="listId")

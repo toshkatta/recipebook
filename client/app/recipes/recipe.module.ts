@@ -8,6 +8,7 @@ import { RecipeBoxComponent } from './components/recipe-box.component';
 import { RecipeListComponent } from './components/recipe-list.component';
 import { RecipeFormComponent } from './components/recipe-form.component';
 import { RecipeDetailComponent } from './components/recipe-detail.component';
+import { ConfirmDeleteComponent } from './components/confirm-delete.component';
 import { RecipeComponent } from './components/index';
 
 import { RecipeService } from './services/recipe.service';
@@ -28,7 +29,8 @@ import { RecipeRoutingModule } from './recipe-routing.module';
     RecipeBoxComponent,
     RecipeFormComponent,
     RecipeListComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    ConfirmDeleteComponent
   ],
 
   providers: [
@@ -40,7 +42,8 @@ import { RecipeRoutingModule } from './recipe-routing.module';
     RecipeBoxComponent,
     RecipeFormComponent,
     RecipeListComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    ConfirmDeleteComponent
   ]
 
 })

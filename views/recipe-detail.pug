@@ -1,13 +1,11 @@
 h2.text-center {{recipe.name}}
-p
-    strong.
-        Ingredients: 
-    | {{recipe.ingredients}}
-p
-    strong.
-        Directions: 
-    | {{recipe.directions}}
-button.btn.btn-lg.btn-default((click)="edit()")
-    span.glyphicon.glyphicon-edit(aria-hidden="true")
-button.btn.btn-lg.btn-danger((click)="delete()")
-    span.glyphicon.glyphicon-remove(aria-hidden="true")
+.panel.panel-success
+    .panel-heading
+        h3.panel-title.text-center Ingredients
+    .panel-body  {{recipe.ingredients}}
+.panel.panel-info
+    .panel-heading
+        h3.panel-title.text-center Directions
+    .panel-body  {{recipe.directions}}
+
+a(routerLink="/recipes", routerLinkActive="active") Back to recipes

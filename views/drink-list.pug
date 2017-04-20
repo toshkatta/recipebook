@@ -5,14 +5,14 @@
       input.form-control(type="text", [value]="searchValue", (input)="searchValue=$event.target.value", placeholder="Type to search")
 
 
-table.table.table-striped
+table.table.table-bordered
     caption.text-center
         h3 Drinks
     tr
-        th.pointer((click)="sort('id')") Id
-        th.pointer((click)="sort('name')") Name
-        th.pointer((click)="sort('ingredients')") Ingredients
-        th.pointer((click)="sort('directions')") Directions
+        th.pointer([ngClass]="{'info': previousSortProperty === 'id'}", (click)="sort('id')") Id
+        th.pointer([ngClass]="{'info': previousSortProperty === 'name'}", (click)="sort('name')") Name
+        th.pointer([ngClass]="{'info': previousSortProperty === 'ingredients'}", (click)="sort('ingredients')") Ingredients
+        th.pointer([ngClass]="{'info': previousSortProperty === 'directions'}", (click)="sort('directions')") Directions
     tr(*ngFor='let drink of drinks | nameFilter:searchValue')
         td {{drink.id}}
         td {{drink.name}}

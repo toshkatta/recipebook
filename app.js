@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 app.use('/', mainRouter);
 app.use('/api', apiRouter);
+app.use('*', apiRouter);
 
 app.listen(3006, function () {
     console.log("Server started on port 3006");

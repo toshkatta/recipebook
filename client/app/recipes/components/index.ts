@@ -7,6 +7,6 @@ import { EmitterService } from '../../emitter.service';
 })
 export class RecipeComponent {
     // Event tracking properties
-    private listId = 'COMMENT_COMPONENT_LIST';
-    private editId = 'COMMENT_COMPONENT_EDIT';
+    private listId = 'list';
+    private editId = 'edit';
 }

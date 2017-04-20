@@ -1,0 +1,12 @@
+#confirmDeleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='confirmDeleteModalLabel')
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                h3#confirmDeleteModalLabel.modal-title.text-center Delete recipe
+            .modal-body
+                h4.text-center Are you sure you want to delete {{recipe.name}}?
+                .btn-group.btn-group-justified.push-top-more(role="group", aria-label="Confirm")
+                    a.btn.btn-danger(type="button", data-dismiss='modal', (click)="deleteRecipe()") Delete
+                    a.btn.btn-default(type="button", data-dismiss='modal') Close

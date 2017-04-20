@@ -30,7 +30,7 @@ export class RecipeFormComponent implements OnChanges {
 
   onSubmit() { this.submitted = true; }
 
-  resetForm = function () {
+  resetForm() {
     this.model = new Recipe('', '', '');
     this.form.reset();
     this.removeEditing();
@@ -65,11 +65,11 @@ export class RecipeFormComponent implements OnChanges {
 
   }
 
-  removeEditing = function () {
+  removeEditing() {
     this.editing = false;
   }
 
-  addRecipe = function () {
+  addRecipe() {
     if (!this.checkIfEmpty(this.model)) return
 
     this.model = new Recipe(this.model.name, this.model.ingredients, this.model.directions);
@@ -84,7 +84,7 @@ export class RecipeFormComponent implements OnChanges {
       );
   }
 
-  editRecipe = function () {
+  editRecipe() {
     if (!this.checkIfEmpty(this.model, true)) return
 
     this.recipeService.updateRecipe(this.model)

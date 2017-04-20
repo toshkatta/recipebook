@@ -164,4 +164,8 @@ router.get('/drinks', function (req, res) {
     });
 });
 
+router.get('*', function(req, res) {
+    res.render('index');
+})
+
 module.exports = router;

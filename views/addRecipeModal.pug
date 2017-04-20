@@ -1,29 +1,29 @@
 #addRecipeModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addRecipeModalLabel')
-  .modal-dialog(role='document')
-    .modal-content
-      .modal-header
-        button.close(type='button', data-dismiss='modal', aria-label='Close')
-          span(aria-hidden='true') &times;
-        h3#addRecipeModalLabel.modal-title.text-center(*ngIf="!editing") Create a recipe
-        h3#addRecipeModalLabel.modal-title.text-center(*ngIf="editing") Edit this recipe
-      .modal-body
-        form((ngSubmit)="onSubmit()", #recipeForm="ngForm")
-          .form-group
-              label(for="name") Name
-              input(type="text", name="name", [(ngModel)]="model.name", #name="ngModel", placeholder="Name", required)#name.form-control
-              .alert.alert-danger([hidden]="name.valid || name.pristine").
-                  Name is required
-          .form-group
-              label(for="ingredients") Ingredients
-              textarea([(ngModel)]="model.ingredients", rows="5", name="ingredients", #ingredients="ngModel", placeholder="Ingredients", required)#ingredients.form-control
-              .alert.alert-danger([hidden]="ingredients.valid || ingredients.pristine").
-                  Ingredients are required
-          .form-group
-              label(for="directions") Directions
-              textarea([(ngModel)]="model.directions", rows="5", name="directions", #directions="ngModel", placeholder="Driections", required)#directions.form-control
-              .alert.alert-danger([hidden]="directions.valid || directions.pristine").
-                  Directions are required
-          .modal-footer
-            button.btn.btn-default(type='button', data-dismiss='modal', (click)="removeEditing()") Close
-            button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="addRecipe()", [disabled]="!recipeForm.form.valid", *ngIf="!editing") Save            
-            button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="editRecipe()", [disabled]="!recipeForm.form.valid", *ngIf="editing") Edit
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                h3#addRecipeModalLabel.modal-title.text-center(*ngIf="!editing") Create a recipe
+                h3#addRecipeModalLabel.modal-title.text-center(*ngIf="editing") Edit this recipe
+            .modal-body
+                form((ngSubmit)="onSubmit()", #recipeForm="ngForm")
+                    .form-group
+                        label(for="name") Name
+                        input(type="text", name="name", [(ngModel)]="model.name", #name="ngModel", placeholder="Name", required)#name.form-control
+                        .alert.alert-danger([hidden]="name.valid || name.pristine").
+                                Name is required
+                    .form-group
+                        label(for="ingredients") Ingredients
+                        textarea([(ngModel)]="model.ingredients", rows="5", name="ingredients", #ingredients="ngModel", placeholder="Ingredients", required)#ingredients.form-control
+                        .alert.alert-danger([hidden]="ingredients.valid || ingredients.pristine").
+                            Ingredients are required
+                    .form-group
+                        label(for="directions") Directions
+                        textarea([(ngModel)]="model.directions", rows="5", name="directions", #directions="ngModel", placeholder="Driections", required)#directions.form-control
+                        .alert.alert-danger([hidden]="directions.valid || directions.pristine").
+                            Directions are required
+            .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal', (click)="removeEditing()") Close
+                button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="addRecipe()", [disabled]="!recipeForm.form.valid", *ngIf="!editing") Save            
+                button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="editRecipe()", [disabled]="!recipeForm.form.valid", *ngIf="editing") Edit

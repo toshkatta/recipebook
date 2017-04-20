@@ -7,10 +7,12 @@ import { RecipeModule } from './recipes/recipe.module';
 import { DrinkModule } from './drinks/drinks.module';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from './app-routing.module';
 import { EmitterService } from './emitter.service';
 
-import { PageNotFoundComponent } from './not-found.component'
+
+import { LandingPageComponent } from './landing-page.component';
+import { PageNotFoundComponent } from './not-found.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import { PageNotFoundComponent } from './not-found.component'
     DrinkModule,
     AppRoutingModule
   ],
-  declarations: [AppComponent, PageNotFoundComponent],
+  declarations: [AppComponent, LandingPageComponent, PageNotFoundComponent],
   providers: [EmitterService],
   bootstrap: [AppComponent]
 })
