@@ -3,7 +3,7 @@
 * [NodeJS](https://nodejs.org/en/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Gulp](http://gulpjs.com/)
-* [Angular2](https://angular.io/)
+* [Angular](https://angular.io/)
 * [SASS](http://sass-lang.com/)
 
 ## In order to run the app:
